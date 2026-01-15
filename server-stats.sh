@@ -16,7 +16,7 @@ echo " "
 
 ## CPU Usage
 
-cpu_usage=$(top | head -n 3 | grep "%Cpu(s):" | awk -F " " '{print (100-$8)}')
+cpu_usage=$(LC_ALL=C | top -bn2 | grep '^%Cpu' | tail -n 1 | awk -F " " '{print ($2 + $4 + $6)}')
 
 echo "## CPU State ##"
 echo " "
